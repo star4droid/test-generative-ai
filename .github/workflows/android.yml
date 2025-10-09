@@ -21,8 +21,7 @@ jobs:
     - name: Create google-services.json from secret
       run: |
           cd firebase-ai
-          mkdir -p firebase-ai/app/src/debug
-          ls -R
+          mkdir -p firebase-ai/app/src/release
           echo "${{ secrets.FIREBASE_SERVICES_JSON }}" | base64 --decode > firebase-ai/app/src/release/google-services.json
           echo "${{ secrets.FIREBASE_SERVICES_JSON }}" | base64 --decode > firebase-ai/app/google-services.json
   
