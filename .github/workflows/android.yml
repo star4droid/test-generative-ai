@@ -20,10 +20,13 @@ jobs:
 
     - name: Create google-services.json from secret
       run: |
-          mkdir -p admob/app/src/debug
+          cd firebase-ai
+          mkdir -p app/src/debug
           ls -R
-          echo "${{ secrets.FIREBASE_SERVICES_JSON }}" | base64 --decode > admob/app/src/debug/google-services.json
-          if [ -f admob/app/src/debug/google-services.json ]; then
+          echo "${{ secrets.FIREBASE_SERVICES_JSON }}" | base64 --decode > app/src/debug/google-services.json
+          echo "${{ secrets.FIREBASE_SERVICES_JSON }}" | base64 --decode > app/google-services.json
+  
+          if [ -f app/src/debug/google-services.json ]; then
             echo "google-services.json file created successfully."
           else
             echo "Error: google-services.json file was not created."
@@ -37,7 +40,7 @@ jobs:
     
     # Build with Gradle
     - name: Build with Gradle
-      run: ./firebase-ai/gradlew build
+      run: ./gradlew build
 
     # Upload APK artifact
     - name: Upload APK
