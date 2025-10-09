@@ -22,10 +22,21 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
+    
     # Build with Gradle
     - name: Build with Gradle
       run: ./firebase-ai/gradlew build
 
+    - name: Create google-services.json from secret
+      run: |
+          echo "${{ secrets.FIREBASE_SERVICES_JSON }}" | base64 --decode > app/google-services.json
+          if [ -f app/google-services.json ]; then
+            echo "google-services.json file created successfully."
+          else
+            echo "Error: google-services.json file was not created."
+            exit 1
+          fi
+          
     # Upload APK artifact
     - name: Upload APK
       uses: actions/upload-artifact@v4
