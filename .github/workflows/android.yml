@@ -29,8 +29,8 @@ jobs:
 
     - name: Create google-services.json from secret
       run: |
-          echo "${{ secrets.FIREBASE_SERVICES_JSON }}" | base64 --decode > app/google-services.json
-          if [ -f app/google-services.json ]; then
+          echo "${{ secrets.FIREBASE_SERVICES_JSON }}" | base64 --decode > firebase-ai/app/google-services.json
+          if [ -f firebase-ai/app/google-services.json ]; then
             echo "google-services.json file created successfully."
           else
             echo "Error: google-services.json file was not created."
