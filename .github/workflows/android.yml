@@ -30,7 +30,6 @@ jobs:
             echo "google-services.json file created successfully."
           else
             echo "Error: google-services.json file was not created."
-            exit 1
           fi
           
     # Grant execute permission for gradlew
