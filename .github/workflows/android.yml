@@ -17,15 +17,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
-        
-    # Grant execute permission for gradlew
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
-    
-    # Build with Gradle
-    - name: Build with Gradle
-      run: ./firebase-ai/gradlew build
 
     - name: Create google-services.json from secret
       run: |
@@ -37,6 +28,15 @@ jobs:
             exit 1
           fi
           
+    # Grant execute permission for gradlew
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    
+    # Build with Gradle
+    - name: Build with Gradle
+      run: ./firebase-ai/gradlew build
+
     # Upload APK artifact
     - name: Upload APK
       uses: actions/upload-artifact@v4
