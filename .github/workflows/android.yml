@@ -20,6 +20,8 @@ jobs:
 
     - name: Create google-services.json from secret
       run: |
+          mkdir -p admob/app/src/debug
+          ls -R
           echo "${{ secrets.FIREBASE_SERVICES_JSON }}" | base64 --decode > admob/app/src/debug/google-services.json
           if [ -f admob/app/src/debug/google-services.json ]; then
             echo "google-services.json file created successfully."
